@@ -1,4 +1,5 @@
 import 'package:evaly_clone/views/screens/nav_bar/nav_bar.dart';
+import 'package:evaly_clone/views/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: kWhite),
       home: NavBarPage(),
     );
   }

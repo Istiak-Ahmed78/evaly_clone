@@ -25,7 +25,7 @@ class PopulerItems extends StatelessWidget {
           PopulerItem(
             title: 'Express',
             icon: FontAwesomeIcons.truck,
-            iconColor: kYeAccent,
+            iconColor: kOrangeAccent,
           ),
           PopulerItem(
             title: 'Catagories',
@@ -35,7 +35,7 @@ class PopulerItems extends StatelessWidget {
           PopulerItem(
             title: 'Others',
             icon: FontAwesomeIcons.listAlt,
-            iconColor: kYeAccent,
+            iconColor: kOrange,
           )
         ],
       ),

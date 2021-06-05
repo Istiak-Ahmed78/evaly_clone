@@ -23,6 +23,7 @@ class _NavBarPageState extends State<NavBarPage> {
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             selectedItemColor: navActiveColor,
+            selectedLabelStyle: TextStyle(color: kGrey),
             unselectedItemColor: kGrey,
             currentIndex: _currentIndex,
             onTap: (index) {

@@ -1,16 +1,18 @@
 import 'package:evaly_clone/models/priorty_product_model.dart';
+import 'package:evaly_clone/views/styles/colors.dart';
+import 'package:evaly_clone/views/styles/padding.dart';
 import 'package:flutter/material.dart';
 
 class PriorityProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: GridView.builder(
+        width: double.infinity,
+        height: 230,
+        child: ListView.builder(
             shrinkWrap: true,
             itemCount: PriorityProductModel.priorityProductList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-            ),
+            scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) =>
                 PriorityProductItem(
                   productImageAdress: PriorityProductModel
@@ -22,7 +24,6 @@ class PriorityProductList extends StatelessWidget {
                   discountPrice: PriorityProductModel
                       .priorityProductList[index].disCountPrice,
                 )));
-    // child: ListView.builder(shrinkWrap: true,itemBuilder: (BuildContext context,int index)=> PriorityProductItem(productImageAdress: PriorityProductModel.priorityProductList[index].productImageAddress, productName: PriorityProductModel.priorityProductList[index].productName, currentPrice: PriorityProductModel.priorityProductList[index].currentPrice, discountPrice: PriorityProductModel.priorityProductList[index].disCountPrice)),
   }
 }
 
@@ -41,15 +42,42 @@ class PriorityProductItem extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Column(
-        children: [
-          Image.asset(productImageAdress),
-          Text(productName),
-          Text('৳ $currentPrice'),
-          Text('৳ $discountPrice')
-        ],
+    return Container(
+      width: 140,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Card(
+        elevation: 0.0,
+        color: kWhite,
+        child: Padding(
+          padding: EdgeInsets.all(smallPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                productImageAdress,
+                height: 120,
+                width: 120,
+              ),
+              Text(productName),
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                '৳ $currentPrice',
+                style: TextStyle(
+                    decoration: TextDecoration.lineThrough, color: kGrey),
+              ),
+              SizedBox(
+                height: 6,
+              ),
+              Text(
+                '৳ $discountPrice',
+                style: TextStyle(color: Colors.red),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

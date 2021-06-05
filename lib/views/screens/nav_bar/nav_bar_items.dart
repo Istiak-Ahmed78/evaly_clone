@@ -24,14 +24,19 @@ class NaviBarItem {
         iconData: FontAwesomeIcons.heart,
         index: 1),
     NaviBarItem(
+        title: 'Campaingns',
+        iconData: Icons.campaign,
+        widget: CamPaignsTab(),
+        index: 2),
+    NaviBarItem(
         title: 'Card',
         widget: CardTab(),
         iconData: FontAwesomeIcons.shoppingBag,
-        index: 2),
+        index: 3),
     NaviBarItem(
         title: 'Account',
         widget: AccountTab(),
         iconData: Icons.person,
-        index: 3)
+        index: 4)
   ];
 }

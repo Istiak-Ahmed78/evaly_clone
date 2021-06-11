@@ -1,31 +1,38 @@
-import 'package:evaly_clone/views/screens/nav_bar/nav_bar.dart';
-import 'package:evaly_clone/views/styles/colors.dart';
+import 'package:evaly_clone/utils/connectivity/network_status_service.dart';
+import 'package:evaly_clone/utils/theme_pref.dart';
+import 'package:evaly_clone/views/screens/network_awer_widget/netwok_awer_widget.dart';
+import 'package:evaly_clone/views/screens/no_connection_screen/no_connection_screen.dart';
+import 'package:evaly_clone/views/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' hide StreamProvider;
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'state_management/theme.dart';
 
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: kTransparent));
-  runApp(ProviderScope(child: MyApp()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreference = await SharedPreferences.getInstance();
+
+  runApp(ProviderScope(overrides: [
+    sharedPreferencesProvider.overrideWithValue(sharedPreference),
+  ], child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader reader) {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: kWhite,
-          backgroundColor: kLightGrey,
-          highlightColor: kGrey,
-          secondaryHeaderColor: kBlack,
-          // backgroundColor: Color.fromRGBO(184, 186, 185, 1.0),
-          textTheme: TextTheme(
-            subtitle1: TextStyle(color: kWhite),
-          )),
-      home: NavBarPage(),
+      theme: reader(appThemeStateProvider),
+      // home: NoConnectionScreen(),
+      home: StreamProvider<NetWorkStatus>(
+          initialData: NetWorkStatus.offline,
+          create: (context) =>
+              NetworkStatusServices().networkStatusController.stream,
+          child: NetwoekAwerWidget(
+              onlineWidget: SpleshScreen(),
+              offlineWidget: NoConnectionScreen())),
     );
   }
 }

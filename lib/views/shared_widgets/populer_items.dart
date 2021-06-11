@@ -65,8 +65,9 @@ class PopulerItem extends StatelessWidget {
             child: Container(
               height: populerItemRadius,
               width: populerItemRadius,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: kLightGrey),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor),
               child: Icon(
                 icon,
                 color: iconColor,
@@ -80,7 +81,7 @@ class PopulerItem extends StatelessWidget {
         ),
         Text(
           title,
-          style: TextStyle(fontFamily: defaultFont),
+          style: Theme.of(context).textTheme.bodyText2,
         ),
       ],
     );

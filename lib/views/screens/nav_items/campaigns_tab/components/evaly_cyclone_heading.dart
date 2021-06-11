@@ -11,7 +11,7 @@ class EvalyCycloneHeading extends StatelessWidget {
       // height: 80,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).secondaryHeaderColor,
+        color: kBlack,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Padding(
@@ -26,15 +26,13 @@ class EvalyCycloneHeading extends StatelessWidget {
                 Text(
                   'Evaly Cyclone',
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                      color: kWhite, fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 SizedBox(
                   height: moreSmallPadding,
                 ),
                 Text('The Biggest Sale Festival of the Country',
-                    style: TextStyle(color: Theme.of(context).primaryColor)),
+                    style: TextStyle(color: kWhite)),
               ],
             ),
             Transform.rotate(

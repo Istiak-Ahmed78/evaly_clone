@@ -1,16 +1,24 @@
+import 'package:evaly_clone/state_management/tab_index.dart';
+import 'package:evaly_clone/state_management/theme.dart';
+import 'package:evaly_clone/views/screens/nav_items/nav_items.dart';
 import 'package:evaly_clone/views/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'nav_bar_items.dart';
+import 'package:flutter/services.dart';
 
-class NavBarPage extends StatefulWidget {
-  @override
-  _NavBarPageState createState() => _NavBarPageState();
-}
+class NavBarPage extends ConsumerWidget {
+  void navigateToAccountPage(BuildContext context) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => AccountPage()));
+  }
 
-class _NavBarPageState extends State<NavBarPage> {
-  int _currentIndex = 0;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader reader) {
+    int _currentIndex = reader(tabIndexProvider);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarIconBrightness: reader(appThemeStateProvider).brightness,
+        statusBarColor: kTransparent));
     return Scaffold(
         body: Stack(
       children: [
@@ -18,25 +26,27 @@ class _NavBarPageState extends State<NavBarPage> {
           index: _currentIndex,
           children: [for (final item in NaviBarItem.navBars) item.widget],
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: navActiveColor,
-            selectedLabelStyle: TextStyle(color: kGrey),
-            unselectedItemColor: kGrey,
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            items: [
-              for (final i in NaviBarItem.navBars)
-                BottomNavigationBarItem(icon: Icon(i.iconData), label: i.title)
-            ],
-          ),
-        )
+        _currentIndex == 4
+            ? Container()
+            : Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: navActiveColor,
+                  backgroundColor: Theme.of(context).backgroundColor,
+                  selectedLabelStyle: TextStyle(color: kGrey),
+                  unselectedItemColor: kGrey,
+                  currentIndex: _currentIndex,
+                  onTap: (index) {
+                    context.read(tabIndexProvider.notifier).setIndex(index);
+                  },
+                  items: [
+                    for (final i in NaviBarItem.navBars)
+                      BottomNavigationBarItem(
+                          icon: Icon(i.iconData), label: i.title)
+                  ],
+                ),
+              )
       ],
     ));
   }

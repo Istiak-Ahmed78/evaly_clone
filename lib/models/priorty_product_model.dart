@@ -4,18 +4,22 @@ class PriorityProductModel {
   final String productName;
   final String productImageAddress;
   final String currentPrice;
-  final String disCountPrice;
+  final String? previousPrice;
 
   PriorityProductModel(
       {required this.productName,
       required this.currentPrice,
       required this.productImageAddress,
-      required this.disCountPrice});
+      this.previousPrice});
   static List<PriorityProductModel> priorityProductList = [
     PriorityProductModel(
         productName: 'Samsung Galaxy M01c',
         currentPrice: '11,999',
         productImageAddress: kGallerxy01,
-        disCountPrice: '11,340')
+        previousPrice: '11,340'),
+    PriorityProductModel(
+        productName: 'Redmi Note 8',
+        currentPrice: '16,000',
+        productImageAddress: kXiomi)
   ];
 }

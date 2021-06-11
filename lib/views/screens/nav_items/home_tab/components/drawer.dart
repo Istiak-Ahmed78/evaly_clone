@@ -1,42 +1,93 @@
 import 'package:evaly_clone/constants.dart';
+import 'package:evaly_clone/state_management/tab_index.dart';
+import 'package:evaly_clone/state_management/theme.dart';
 import 'package:evaly_clone/views/styles/padding.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'theme_mode_selection_dialog.dart';
 
-class HomeTabDrawer extends StatelessWidget {
+class HomeTabDrawer extends ConsumerWidget {
   const HomeTabDrawer({Key? key}) : super(key: key);
 
+  Widget _tileTitle(text, context) => Text(
+        text,
+        style: TextStyle(
+            color: Theme.of(context).secondaryHeaderColor,
+            fontSize: 15,
+            fontWeight: FontWeight.normal),
+      );
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader reader) {
+    void _showDialog(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: _tileTitle('Choose theme', context),
+            content: AlertDialogContent(),
+            actions: <Widget>[
+              new TextButton(
+                child: new Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Container(
       padding: EdgeInsets.all(18),
+      color: Theme.of(context).primaryColor,
       child: ListView(
         shrinkWrap: true,
         children: [
           DrawerHeader(
-              child: Image.asset(
-            kEvalyLogo,
-            height: 20,
-            width: 100,
+              child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 55),
+            child: reader(appThemeStateProvider) == lightTheme
+                ? Image.asset(
+                    kEvalyLogo,
+                    height: 30,
+                    width: 70,
+                  )
+                : Image.asset(
+                    kEvalyLogoWhite,
+                    height: 30,
+                    width: 70,
+                  ),
           )),
-          DrawerTile(
-            title: 'Home',
-            icon: Icons.home,
+          ListTile(
+            title: _tileTitle('Home', context),
+            leading: Icon(Icons.home),
+            onTap: () {
+              // context.read(tabIndexProvider.notifier).setIndex(0);
+            },
           ),
-          DrawerTile(
-            title: 'Sign In',
-            icon: Icons.person,
+          ListTile(
+            title: _tileTitle('Sign In', context),
+            leading: Icon(Icons.person),
           ),
-          DrawerTile(icon: FontAwesomeIcons.heart, title: 'Wishlist'),
-          DrawerTile(
-            icon: Icons.call,
-            title: 'Contact Us',
+          ListTile(
+            title: _tileTitle('Contact Us', context),
+            leading: Icon(Icons.call),
           ),
-          DrawerTile(
-            title: 'Dark Mode',
-            icon: Icons.nightlight,
+          ListTile(
+            title: _tileTitle('Dark Mode', context),
+            leading: Icon(Icons.nightlight),
+            onTap: () {
+              Navigator.pop(context);
+              _showDialog(context);
+            },
           ),
-          DrawerTile(title: 'Terms & Condition', icon: Icons.article)
+          ListTile(
+            title: _tileTitle('Terms & Condition', context),
+            leading: Icon(
+              Icons.article,
+            ),
+          ),
         ],
       ),
     );
@@ -52,6 +103,7 @@ class DrawerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: smallPadding),
       child: Row(
         children: [

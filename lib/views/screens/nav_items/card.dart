@@ -9,6 +9,7 @@ class CardTab extends StatelessWidget {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
         title: Text(
           'Shopping Card',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -19,7 +20,7 @@ class CardTab extends StatelessWidget {
         ],
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
       ),
-      backgroundColor: kWhite,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

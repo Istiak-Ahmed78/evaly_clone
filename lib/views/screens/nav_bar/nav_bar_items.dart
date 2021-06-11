@@ -35,7 +35,7 @@ class NaviBarItem {
         index: 3),
     NaviBarItem(
         title: 'Account',
-        widget: AccountTab(),
+        widget: AccountPage(),
         iconData: Icons.person,
         index: 4)
   ];

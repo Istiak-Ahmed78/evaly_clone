@@ -1,3 +1,4 @@
+import 'package:evaly_clone/views/screens/nav_items/account_tab/account_tab.dart';
 import 'package:evaly_clone/views/screens/nav_items/home_tab/home_tab.dart';
 import 'package:evaly_clone/views/screens/nav_items/nav_items.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class NaviBarItem {
         index: 3),
     NaviBarItem(
         title: 'Account',
-        widget: AccountPage(),
+        widget: AccountTab(),
         iconData: Icons.person,
         index: 4)
   ];

@@ -23,6 +23,8 @@ const defaultFont = 'Roboto';
 
 const isDarkModeKey = 'appmode';
 
+const oneSignalId = '8ec982ef-f097-49ae-81b2-167818d79341';
+
 Widget image({required String address, BoxFit type = BoxFit.cover}) =>
     Container(
       decoration: BoxDecoration(

@@ -1,6 +1,6 @@
 import 'package:evaly_clone/state_management/tab_index.dart';
 import 'package:evaly_clone/state_management/theme.dart';
-import 'package:evaly_clone/views/screens/nav_items/nav_items.dart';
+import 'package:evaly_clone/views/screens/nav_items/account_tab/account_tab.dart';
 import 'package:evaly_clone/views/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 class NavBarPage extends ConsumerWidget {
   void navigateToAccountPage(BuildContext context) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => AccountPage()));
+        MaterialPageRoute(builder: (BuildContext context) => AccountTab()));
   }
 
   @override

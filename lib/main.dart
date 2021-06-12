@@ -12,7 +12,6 @@ import 'state_management/theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreference = await SharedPreferences.getInstance();
-
   runApp(ProviderScope(overrides: [
     sharedPreferencesProvider.overrideWithValue(sharedPreference),
   ], child: MyApp()));
@@ -25,7 +24,6 @@ class MyApp extends ConsumerWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: reader(appThemeStateProvider),
-      // home: NoConnectionScreen(),
       home: StreamProvider<NetWorkStatus>(
           initialData: NetWorkStatus.offline,
           create: (context) =>

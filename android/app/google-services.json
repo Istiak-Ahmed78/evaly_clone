@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "899347375878",
+    "project_id": "evaly-clone",
+    "storage_bucket": "evaly-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899347375878:android:5bb0ee7c9a9db94a15a087",
+        "android_client_info": {
+          "package_name": "com.example.evaly_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899347375878-0kkg7d7b5dgkcvoi48emqgh6bbi9s7eo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.evaly_clone",
+            "certificate_hash": "07cd6002ea6d4752a9aef7ea273d7661764028ed"
+          }
+        },
+        {
+          "client_id": "899347375878-f6i39nlecmr0ie5j25sr5pkg80bla62d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDam0O-kjfDA8j27_RhZobIc0MUHFyV-jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899347375878-f6i39nlecmr0ie5j25sr5pkg80bla62d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -47,6 +47,7 @@ android {
         applicationId "com.example.evaly_clone"
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

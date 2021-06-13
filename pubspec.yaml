@@ -26,9 +26,13 @@ dependencies:
   carousel_slider: ^4.0.0-nullsafety.0
   connectivity_plus: ^1.0.2
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.3.0
+  firebase_messaging: ^10.0.2
+  flutter_local_notifications: ^6.0.0
   flutter_riverpod: ^0.14.0+3
   fluttertoast: ^8.0.7
   font_awesome_flutter: ^9.0.0
+  overlay_support: ^1.2.1
   provider: ^5.0.0
   shared_preferences: ^2.0.6
   toast: ^0.1.5

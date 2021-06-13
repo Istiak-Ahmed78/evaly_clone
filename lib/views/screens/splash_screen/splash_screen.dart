@@ -1,13 +1,9 @@
 import 'package:evaly_clone/constants.dart';
-import 'package:evaly_clone/state_management/theme.dart';
 import 'package:evaly_clone/views/screens/nav_bar/nav_bar.dart';
 import 'package:evaly_clone/views/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpleshScreen extends StatefulWidget {
-  const SpleshScreen({Key? key}) : super(key: key);
-
   @override
   _SpleshScreenState createState() => _SpleshScreenState();
 }
@@ -15,11 +11,11 @@ class SpleshScreen extends StatefulWidget {
 class _SpleshScreenState extends State<SpleshScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1), () {
-      context.read(appThemeStateProvider.notifier).getCurrentTheme(context);
-    }).then((value) => Navigator.push(
-        context, MaterialPageRoute(builder: (context) => NavBarPage())));
     super.initState();
+    Future.delayed(Duration(seconds: 1), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => NavBarPage()));
+    });
   }
 
   @override

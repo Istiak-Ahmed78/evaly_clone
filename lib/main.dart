@@ -1,4 +1,3 @@
-import 'package:evaly_clone/models/push_notification.dart';
 import 'package:evaly_clone/utils/connectivity/network_status_service.dart';
 import 'package:evaly_clone/utils/theme_pref.dart';
 import 'package:evaly_clone/views/screens/network_awer_widget/netwok_awer_widget.dart';
@@ -13,8 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'state_management/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:evaly_clone/views/screens/notification_budget/notification_budget.dart';
-import 'views/screens/notification_budget/notification_budget.dart';
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 

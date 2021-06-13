@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
   final String hintText;
-  final IconData icon;
+  final IconData? icon;
   final bool isPass;
   final TextEditingController textEditingController;
   final TextInputType textInputType;
   InputField(
       {Key? key,
       required this.hintText,
-      required this.icon,
+      this.icon,
       this.isPass = false,
       this.textInputType = TextInputType.text,
       required this.textEditingController})
@@ -44,11 +44,14 @@ class _InputFieldState extends State<InputField> {
                 color: Theme.of(context).secondaryHeaderColor.withOpacity(0.7)),
             enabledBorder: border,
             focusedBorder: border,
-            prefixIcon: Icon(
-              widget.icon,
-              size: 20,
-              color: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
-            ),
+            prefixIcon: widget.icon != null
+                ? Icon(
+                    widget.icon,
+                    size: 20,
+                    color:
+                        Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
+                  )
+                : null,
             suffixIcon: widget.isPass
                 ? InkWell(
                     onTap: () {

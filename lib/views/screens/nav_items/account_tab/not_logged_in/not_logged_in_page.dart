@@ -8,7 +8,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'components/componets.dart';
 
 class NotLoggedInPage extends ConsumerWidget {
   NotLoggedInPage({Key? key}) : super(key: key);
@@ -47,14 +46,11 @@ class NotLoggedInPage extends ConsumerWidget {
                         image: AssetImage(
                             reader(appThemeStateProvider) == lightTheme
                                 ? kEvalyLogo
-                                : kEvalyLogoWhite)
-                        // : AssetImage(kEvalyLogoWhite)
-                        )),
+                                : kEvalyLogoWhite))),
               ),
               SizedBox(
                 height: _size.height * 0.1,
               ),
-              // Spacer(),
               InputField(
                 textEditingController: emailController,
                 textInputType: TextInputType.number,

@@ -6,10 +6,12 @@ class InputField extends StatefulWidget {
   final String hintText;
   final IconData? icon;
   final bool isPass;
+  final double? width;
   final TextEditingController textEditingController;
   final TextInputType textInputType;
   InputField(
       {Key? key,
+      this.width,
       required this.hintText,
       this.icon,
       this.isPass = false,
@@ -30,7 +32,7 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: widget.width,
       height: 60,
       child: TextField(
         controller: widget.textEditingController,

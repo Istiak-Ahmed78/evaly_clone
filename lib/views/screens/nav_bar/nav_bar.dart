@@ -24,9 +24,8 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        // statusBarIconBrightness: reader(appThemeStateProvider).brightness,
-        statusBarColor: kTransparent));
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: kTransparent));
     return Scaffold(body: Consumer(builder: (context, reader, _) {
       int _currentIndex = reader(tabIndexProvider);
 

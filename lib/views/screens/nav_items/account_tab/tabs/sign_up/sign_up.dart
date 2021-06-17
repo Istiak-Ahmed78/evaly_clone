@@ -100,7 +100,9 @@ class SignUpScreen extends ConsumerWidget {
                 ),
                 SizedBox(
                     child: Text(
-                        'I agree to the Privacy Policy and Terms & Confitions of Evaly.'))
+                  'I agree to the Privacy Policy and Terms & Confitions of Evaly.',
+                  textAlign: TextAlign.start,
+                ))
               ]),
               SizedBox(
                 height: largePadding,

@@ -7,8 +7,9 @@ class ThemePreference {
 
   ThemePreference({required this.sharedPreferences});
   bool isDarkModeEnabled() => sharedPreferences.getBool(isDarkModeKey) ?? false;
-  void setMode(bool isDarkMode) =>
-      sharedPreferences.setBool(isDarkModeKey, isDarkMode);
+  void setMode(bool isDarkMode) {
+    sharedPreferences.setBool(isDarkModeKey, isDarkMode);
+  }
 }
 
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {

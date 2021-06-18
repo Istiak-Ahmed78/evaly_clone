@@ -1,4 +1,3 @@
-import 'package:evaly_clone/models/push_notification.dart';
 import 'package:evaly_clone/utils/connectivity/network_status_service.dart';
 import 'package:evaly_clone/utils/theme_pref.dart';
 import 'package:evaly_clone/views/screens/network_awer_widget/netwok_awer_widget.dart';
@@ -13,21 +12,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'state_management/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:evaly_clone/views/screens/notification_budget/notification_budget.dart';
-import 'views/screens/notification_budget/notification_budget.dart';
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+late AndroidNotificationChannel channel;
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
 }
 
-// AndroidNotificationChannel channel;
+FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  channel = const AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+  );
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
@@ -46,12 +55,50 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      print(message?.notification?.body);
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channel.description,
+              // TODO add a proper drawable resource to android, for now using
+              //      one that already exists in example app.
+              icon: 'launch_background',
+            ),
+          ),
+        );
+        String navigateTo = message.data['screen'];
+        print('App recieved: navigate to $navigateTo');
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print(
+          'A new onMessageOpenedApp event was published!.Message body is ${message.notification?.body}');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return OverlaySupport(
       child: Consumer(
         builder: (context, watch, _) {
           return MaterialApp(
             title: 'Flutter Demo',
+            // navigatorKey: ,
             debugShowCheckedModeBanner: false,
             theme: watch(appThemeStateProvider),
             home: StreamProvider<NetWorkStatus>(

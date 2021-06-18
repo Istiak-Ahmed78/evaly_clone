@@ -1,3 +1,4 @@
+import 'package:evaly_clone/state_management/radio_mode.dart';
 import 'package:evaly_clone/utils/theme_pref.dart';
 import 'package:evaly_clone/views/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,9 @@ class ThemeState extends StateNotifier<ThemeData> {
   ThemeState() : super(lightTheme);
   getCurrentTheme(BuildContext context) {
     state = getTheme(context.read(themePreferenceProvider).isDarkModeEnabled());
+    context
+        .read(radioModeProvider.notifier)
+        .changeValue(state == lightTheme ? 1 : 0);
   }
 
   ThemeData getTheme(bool isDarkMode) => isDarkMode ? darkMode : lightTheme;

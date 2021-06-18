@@ -1,4 +1,3 @@
-import 'package:evaly_clone/views/styles/colors.dart';
 import 'package:evaly_clone/views/styles/padding.dart';
 import 'package:flutter/material.dart';
 

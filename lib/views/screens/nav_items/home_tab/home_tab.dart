@@ -1,12 +1,10 @@
 import 'package:evaly_clone/models/priorty_product_model.dart';
-import 'package:evaly_clone/state_management/theme.dart';
 import 'package:evaly_clone/views/screens/nav_items/home_tab/components/conponats.dart';
 import 'package:evaly_clone/views/shared_widgets/shared_widgets.dart';
 import 'package:evaly_clone/views/styles/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../constants.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeTab extends StatefulWidget {
   static String navTitle = 'Home';

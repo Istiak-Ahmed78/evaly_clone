@@ -38,7 +38,7 @@ class SignUpScreen extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                height: _size.height * 0.1,
+                height: _size.height * 0.08,
               ),
               // Spacer(),
               Container(
@@ -96,20 +96,23 @@ class SignUpScreen extends ConsumerWidget {
                       context.read(termStateProvider.notifier).setIndex(value);
                     }),
                 SizedBox(
-                  width: largePadding,
+                  width: 15,
                 ),
-                SizedBox(
-                    child: Text(
-                  'I agree to the Privacy Policy and Terms & Confitions of Evaly.',
-                  textAlign: TextAlign.start,
-                ))
+                Expanded(
+                  child: Text(
+                    'I agree to the Privacy Policy and Terms & Confitions of Evaly.',
+                    textAlign: TextAlign.start,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ]),
               SizedBox(
                 height: largePadding,
               ),
               DefaultButton(onTap: () {}, buttonText: 'Sign Up'),
               SizedBox(
-                height: _size.height * 0.2,
+                height: _size.height * 0.04,
               ),
 
               RichText(

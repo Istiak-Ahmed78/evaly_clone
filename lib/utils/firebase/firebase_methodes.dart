@@ -14,4 +14,8 @@ class FirebaseMethodes {
       authReference.createUserWithEmailAndPassword(
           email: email, password: password);
   logOut() => authReference.signOut();
+  User? getUserStutas() => authReference.currentUser;
+ Future<ConfirmationResult> signInWithPhoneNumber(String phoneNumber) =>
+    authReference.signInWithPhoneNumber(phoneNumber);
+  
 }

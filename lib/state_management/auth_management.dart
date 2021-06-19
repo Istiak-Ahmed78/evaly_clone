@@ -8,7 +8,12 @@ class AuthMenagementProvider extends StateNotifier<AuthStates> {
   late FirebaseMethodes authMethodes;
   AuthMenagementProvider() : super(AuthStates.loggedOut) {
     authMethodes = FirebaseMethodes();
+    getUser();
   }
+  getUser() {
+    if (authMethodes.getUserStutas() != null) state = AuthStates.loggedIn;
+  }
+
   logIn(email, password) async {
     UserCredential? userCredential;
     userCredential = await authMethodes.logInWithEmailAndPassword(
@@ -33,6 +38,11 @@ class AuthMenagementProvider extends StateNotifier<AuthStates> {
 
   signOut() async {
     await authMethodes.logOut();
+  }
+
+  signInWithPhoneNumber(String phoneNumber) async {
+    // AuthCredential userCredential = AuthCredential();
+    // FirebaseAuth
   }
 }
 

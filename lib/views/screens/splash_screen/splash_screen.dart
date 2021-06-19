@@ -1,5 +1,6 @@
 import 'package:evaly_clone/constants.dart';
 import 'package:evaly_clone/views/screens/nav_bar/nav_bar.dart';
+import 'package:evaly_clone/views/screens/nav_items/account_tab/tabs/otp/otp_screen.dart';
 import 'package:evaly_clone/views/styles/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 1), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => NavBarPage()));
+          context, MaterialPageRoute(builder: (context) => OtpScreen()));
     });
   }
 

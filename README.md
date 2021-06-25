@@ -37,7 +37,8 @@ But the backed is not availble currently.
 #### Campaign tab
 
 
-![200029016_1432753713759272_8666933861942509993_n](https://user-images.githubusercontent.com/68919043/121870551-fea9f500-cd24-11eb-8b7d-200da9491189.jpg)
+![rsz_tv_image](https://user-images.githubusercontent.com/68919043/123375976-84426600-d5ab-11eb-85b7-4137cbd051ee.jpg)
+
 
 #### Card tab
 

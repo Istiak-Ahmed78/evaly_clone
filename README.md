@@ -28,7 +28,9 @@ But the backend is not availble currently.
 
 ### Account tab
 
-<img src="https://user-images.githubusercontent.com/68919043/123380863-c8d10000-d5b1-11eb-8228-cbc0af8870fe.jpg" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/68919043/123394662-320c3f80-d5c1-11eb-949e-967cec88ad26.jpg" width="200" height="400">
+
+
 
 ### Dark theme
 --------------
@@ -39,15 +41,20 @@ But the backend is not availble currently.
 
 
 #### Wish list tab
-<img src="https://user-images.githubusercontent.com/68919043/121870433-dc17dc00-cd24-11eb-8883-9b3db48a37fe.jpg" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/68919043/123395294-dbebcc00-d5c1-11eb-9a8f-76dfb3e8ee59.jpg" width="200" height="400">
+
 
 #### Campaign tab
 
 
-<img src="https://user-images.githubusercontent.com/68919043/123375976-84426600-d5ab-11eb-85b7-4137cbd051ee.jpg" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/68919043/121870732-26995880-cd25-11eb-9473-5369d863ad1c.jpg" width="200" height="400">
 
 
 #### Card tab
 
+<img src="https://user-images.githubusercontent.com/68919043/123396161-cfb43e80-d5c2-11eb-9131-415bad35f74b.jpg" width ="200" height="400">
 
-<img src="https://user-images.githubusercontent.com/68919043/121870732-26995880-cd25-11eb-9473-5369d863ad1c.jpg" width="200" height="400">
+#### Account Tab
+
+<img src="https://user-images.githubusercontent.com/68919043/123399168-1eafa300-d5c6-11eb-8446-813a2f13bc0f.jpg" width="200" height="400">
+

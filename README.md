@@ -1,7 +1,7 @@
 # Evaly clone
 
 This is an e-commerce app UI.
-Basically I tried to code the UI of `Evaly` app.
+The UI has been designed according to `Evaly` app.
 But the backend is not availble currently.
 
 ## Screen shorts

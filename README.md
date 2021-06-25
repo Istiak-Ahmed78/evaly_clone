@@ -1,8 +1,8 @@
 # Evaly clone
 
-This is app is coded by dart in flutter framework.
+This is an e-commerce app UI.
 Basically I tried to code the UI of `Evaly` app.
-But the backed is not availble currently.
+But the backend is not availble currently.
 
 ## Screen shorts
 

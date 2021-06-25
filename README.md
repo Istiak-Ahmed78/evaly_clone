@@ -27,7 +27,8 @@ But the backed is not availble currently.
 
 #### Home tab
 
-![201577824_194614202549111_4626006614928605290_n](https://user-images.githubusercontent.com/68919043/121869973-64e24800-cd24-11eb-89ea-48e22bf5cce2.jpg)
+![rsz_196980043_909506999614027_1652232245554180759_n](https://user-images.githubusercontent.com/68919043/123374758-75f34a80-d5a9-11eb-948b-cf3c6d8adb79.jpg)
+
 
 #### Wish list tab
 ![201577824_194614202549111_4626006614928605290_n](https://user-images.githubusercontent.com/68919043/121870433-dc17dc00-cd24-11eb-8883-9b3db48a37fe.jpg)

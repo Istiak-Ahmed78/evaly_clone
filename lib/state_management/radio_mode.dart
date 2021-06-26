@@ -5,6 +5,8 @@ class RadioMode extends StateNotifier<int> {
   void changeValue(int value) {
     state = value;
   }
+
+  getCurrentTheme() {}
 }
 
 final radioModeProvider =

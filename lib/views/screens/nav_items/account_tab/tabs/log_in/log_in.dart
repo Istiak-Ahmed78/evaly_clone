@@ -1,5 +1,6 @@
 import 'package:evaly_clone/constants.dart';
 import 'package:evaly_clone/state_management/account_tab_state.dart';
+import 'package:evaly_clone/state_management/auth_management.dart';
 import 'package:evaly_clone/state_management/tab_index.dart';
 import 'package:evaly_clone/state_management/theme.dart';
 import 'package:evaly_clone/views/shared_widgets/shared_widgets.dart';
@@ -84,7 +85,17 @@ class LogInPage extends ConsumerWidget {
               SizedBox(
                 height: largePadding,
               ),
-              DefaultButton(onTap: () {}, buttonText: 'Sign In'),
+              DefaultButton(
+                  onTap: () {
+                    if (isValid(
+                        email: emailController.text,
+                        password: passwordController.text)) {
+                      context
+                          .read(authStateManagementStateNotifier.notifier)
+                          .logIn(emailController.text, passwordController.text);
+                    }
+                  },
+                  buttonText: 'Sign In'),
               SizedBox(
                 height: _size.height * 0.2,
               ),
@@ -118,3 +129,6 @@ class LogInPage extends ConsumerWidget {
     );
   }
 }
+
+bool isValid({required String? email, required String? password}) =>
+    email != null && password != null;

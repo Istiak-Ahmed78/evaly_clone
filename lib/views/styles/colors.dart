@@ -20,6 +20,9 @@ const textFieldColor = Color(0xFFF2F4F5);
 const kLightDark = Color(0xFF67778E);
 const kLightTextColor = Color(0xFF969696);
 var kSoLightBlack = Color.fromRGBO(242, 243, 245, 1.0);
+var kMyCardColor1 = Color.fromRGBO(254, 242, 242, 1);
+var kMyCardColor2 = Color.fromRGBO(248, 234, 233, 1);
+var kAvaibleShopButtonColor = Color.fromRGBO(253, 103, 93, 1);
 
 //<-------Dark Theme Colors---------->
 var kDarkBackGround = Color.fromRGBO(26, 26, 26, 1.0);

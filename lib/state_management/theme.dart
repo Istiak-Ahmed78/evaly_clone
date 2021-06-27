@@ -18,7 +18,7 @@ class ThemeState extends StateNotifier<ThemeData> {
     final _isDarkModeEnabled =
         context.read(themePreferenceProvider).isDarkModeEnabled();
     context.read(themePreferenceProvider).setMode(!_isDarkModeEnabled);
-    print('Current mode is: $_isDarkModeEnabled');
+    print('Is dark mode: $_isDarkModeEnabled');
     state = getTheme(!_isDarkModeEnabled);
   }
 }

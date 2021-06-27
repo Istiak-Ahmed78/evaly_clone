@@ -7,8 +7,32 @@ import '../../../constants.dart';
 import 'dart:math' as math;
 import 'components/reviws&rattings.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetails extends StatefulWidget {
   const ProductDetails({Key? key}) : super(key: key);
+
+  @override
+  State<ProductDetails> createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
+  final ScrollController scrollController = ScrollController();
+  double userPosition = 0.0;
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(() {
+      setState(() {
+        userPosition = scrollController.offset;
+      });
+    });
+  }
+
+  double sliverTitleWidth(double value, double maxValue, BuildContext context) {
+    if (maxValue > value)
+      return context.screenWidth - 40 - value / 2.5;
+    else
+      return context.screenWidth * 0.6;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +42,68 @@ class ProductDetails extends StatelessWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              SingleChildScrollView(child: SrollingWidgets(size: _size)),
+              CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  SliverAppBar(
+                    primary: true,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: kBlack,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    expandedHeight: _size.height * 0.5,
+                    pinned: true,
+                    elevation: 0.0,
+                    actions: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.share,
+                          color: kBlack,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        width: sliverTitleWidth(
+                            userPosition, _size.height * 0.4, context),
+                        child: Text(
+                          'Marks Full Cream Milk Powder Poly- 1kg - GBVIPOF0019',
+                          maxLines: userPosition < _size.height * 0.2 ? 2 : 1,
+                          style: TextStyle(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                      centerTitle: true,
+                      collapseMode: CollapseMode.pin,
+                      background: Container(
+                        color: Theme.of(context).backgroundColor,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: _size.height * 0.4,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(powderMilkImageUrl))),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SrollingWidgets()
+                ],
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -91,133 +176,83 @@ class ProductDetails extends StatelessWidget {
 class SrollingWidgets extends StatelessWidget {
   const SrollingWidgets({
     Key? key,
-    required Size size,
-  })  : _size = size,
-        super(key: key);
-
-  final Size _size;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 70),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: Align(
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {},
-                  ),
-                  alignment: Alignment.topLeft,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  height: _size.height * 0.4,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(powderMilkImageUrl))),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: Align(
-                  child: IconButton(
-                    icon: Icon(Icons.share),
-                    onPressed: () {},
-                  ),
-                  alignment: Alignment.topRight,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                'Marks Full Cream Milk Powder Poly- 1kg - GBVIPOF0019',
-                style: TextStyle(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    fontSize: 20),
-              ).pSymmetric(h: 10, v: 20),
-              devider(context: context),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'SKU',
-                    style: TextStyle(
-                        color: Theme.of(context).highlightColor,
-                        fontFamily: defaultFont,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '0X4A796',
-                    style: TextStyle(
-                        color: kRed, fontFamily: defaultFont, fontSize: 18),
-                  ),
-                  Transform.rotate(
-                    angle: math.pi,
-                    child: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-                  )
-                ],
-              ).pSymmetric(v: 15, h: 10),
-              devider(context: context),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).highlightColor,
-                        fontSize: 19),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  productDetails.text.size(18).make(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Specification',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).highlightColor,
-                        fontSize: 19),
-                  ),
-                  ProductSpecification(
-                    brand: 'MARKS',
-                    capacity: '1 Kg',
-                    productType: 'Powder Milk',
-                    catagory: 'Powder Milk',
-                    wight: '1 Kg',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ).pSymmetric(h: 10, v: 10),
-              devider(context: context),
-              ReviewsAndRattings(
-                totalRattings: 4,
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+    return SliverList(
+        delegate: SliverChildListDelegate(
+      [
+        devider(context: context),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'SKU',
+              style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontFamily: defaultFont,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '0X4A796',
+              style:
+                  TextStyle(color: kRed, fontFamily: defaultFont, fontSize: 18),
+            ),
+            Transform.rotate(
+              angle: math.pi,
+              child: IconButton(
+                  onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+            )
+          ],
+        ).pSymmetric(v: 15, h: 10),
+        devider(context: context),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Description',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).highlightColor,
+                  fontSize: 19),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            productDetails.text.size(18).make(),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Specification',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).highlightColor,
+                  fontSize: 19),
+            ),
+            ProductSpecification(
+              brand: 'MARKS',
+              capacity: '1 Kg',
+              productType: 'Powder Milk',
+              catagory: 'Powder Milk',
+              wight: '1 Kg',
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ).pSymmetric(h: 10, v: 10),
+        devider(context: context),
+        ReviewsAndRattings(
+          totalRattings: 4,
+        ),
+        SizedBox(
+          height: 70,
+        )
+      ],
+    ));
   }
 }
 

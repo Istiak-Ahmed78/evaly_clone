@@ -1,8 +1,8 @@
 import 'package:evaly_clone/utils/connectivity/network_status_service.dart';
 import 'package:evaly_clone/utils/theme_pref.dart';
+import 'package:evaly_clone/views/screens/nav_bar/nav_bar.dart';
 import 'package:evaly_clone/views/screens/network_awer_widget/netwok_awer_widget.dart';
 import 'package:evaly_clone/views/screens/no_connection_screen/no_connection_screen.dart';
-import 'package:evaly_clone/views/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide StreamProvider;
@@ -12,8 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'state_management/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-import 'views/screens/product_details/product_details.dart';
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 late AndroidNotificationChannel channel;
@@ -108,7 +106,7 @@ class _MyAppState extends State<MyApp> {
                 create: (context) =>
                     NetworkStatusServices().networkStatusController.stream,
                 child: NetwoekAwerWidget(
-                    onlineWidget: ProductDetails(),
+                    onlineWidget: NavBarPage(),
                     offlineWidget: NoConnectionScreen())),
           );
         },

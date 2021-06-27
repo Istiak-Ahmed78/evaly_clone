@@ -11,8 +11,7 @@ But the backend is not availble currently.
 
 #### Home tab
 
-<img src="https://user-images.githubusercontent.com/68919043/123378595-cb7e2600-d5ae-11eb-83b6-aebc7e5c3592.jpg" width="200" height="400">
-
+<img src="https://user-images.githubusercontent.com/68919043/123547424-8c083300-d782-11eb-8657-4b0fac3bf69b.jpg" width="200" height="400">
 
 
 #### Wish list tab
@@ -37,7 +36,8 @@ But the backend is not availble currently.
 
 #### Home tab
 
-<img src="https://user-images.githubusercontent.com/68919043/123374758-75f34a80-d5a9-11eb-948b-cf3c6d8adb79.jpg" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/68919043/123547221-befdf700-d781-11eb-94d5-bb6addb89cc6.jpg" width="200" height="400">
+
 
 
 #### Wish list tab

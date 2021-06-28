@@ -32,6 +32,7 @@ class _HomeTabState extends State<HomeTab> {
             borderSide: BorderSide.none),
         filled: true,
         fillColor: Theme.of(context).primaryColor);
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: Drawer(
@@ -52,7 +53,6 @@ class _HomeTabState extends State<HomeTab> {
               onPressed: () {},
               icon: Icon(
                 FontAwesomeIcons.commentAlt,
-                // color: Theme.of(context).secondaryHeaderColor,
               ))
         ],
       ),

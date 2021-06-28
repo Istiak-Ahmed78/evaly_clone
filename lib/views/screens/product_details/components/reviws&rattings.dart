@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ReviewsAndRattings extends StatelessWidget {
   final int totalRattings;
   ReviewsAndRattings({Key? key, required this.totalRattings}) : super(key: key);
+
   List<Widget> rattingStatrs(int totalRating, context) {
     var rattinIconList = List<Widget>.generate(
         totalRating,

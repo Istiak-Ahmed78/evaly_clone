@@ -1,14 +1,19 @@
+import 'package:evaly_clone/models/priorty_product_model.dart';
+import 'package:evaly_clone/views/shared_widgets/default_button.dart';
 import 'package:evaly_clone/views/styles/colors.dart';
+import 'package:evaly_clone/views/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constants.dart';
 import 'dart:math' as math;
 import 'components/reviws&rattings.dart';
+import 'components/wishbutton.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({Key? key}) : super(key: key);
+  final PriorityProductModel productModel;
+  const ProductDetails({Key? key, required this.productModel})
+      : super(key: key);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -17,6 +22,7 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   final ScrollController scrollController = ScrollController();
   double userPosition = 0.0;
+
   @override
   void initState() {
     super.initState();
@@ -74,7 +80,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         width: sliverTitleWidth(
                             userPosition, _size.height * 0.4, context),
                         child: Text(
-                          'Marks Full Cream Milk Powder Poly- 1kg - GBVIPOF0019',
+                          widget.productModel.productName,
                           maxLines: userPosition < _size.height * 0.2 ? 2 : 1,
                           style: TextStyle(
                               color: Theme.of(context).secondaryHeaderColor,
@@ -93,15 +99,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                               height: _size.height * 0.4,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(powderMilkImageUrl))),
-                            ),
+                                image: DecorationImage(
+                                    image: AssetImage(widget
+                                        .productModel.productImageAddress)),
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  SrollingWidgets()
+                  SrollingWidgets(
+                    priorityProductModel: widget.productModel,
+                  )
                 ],
               ),
               Align(
@@ -115,7 +125,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       SizedBox(
                         width: 10,
                       ),
-                      Icon(FontAwesomeIcons.heart),
+                      WishButton(widget.productModel),
                       SizedBox(
                         width: 10,
                       ),
@@ -174,9 +184,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 }
 
 class SrollingWidgets extends StatelessWidget {
-  const SrollingWidgets({
-    Key? key,
-  }) : super(key: key);
+  final PriorityProductModel priorityProductModel;
+  const SrollingWidgets({Key? key, required this.priorityProductModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -245,6 +255,102 @@ class SrollingWidgets extends StatelessWidget {
           ],
         ).pSymmetric(h: 10, v: 10),
         devider(context: context),
+        Container(
+          height: 230,
+          width: double.infinity,
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  priorityProductModel.productImageAddress))),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          priorityProductModel.productName,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 20),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add_location_rounded,
+                              color: Theme.of(context).highlightColor,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Bangladesh',
+                              style: TextStyle(
+                                  color: Theme.of(context).highlightColor),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.calendar_today,
+                              color: Theme.of(context).highlightColor,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Stock: Available',
+                              style: TextStyle(
+                                  color: Theme.of(context).highlightColor),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          '৳ ${priorityProductModel.currentPrice}',
+                          style: TextStyle(color: kRed, fontSize: 23),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  DefaultButton(
+                    onTap: () {},
+                    buttonText: 'Add to cart',
+                    width: context.screenWidth * 0.43,
+                    buttonColor: Theme.of(context).canvasColor,
+                    buttonTextColor: Theme.of(context).highlightColor,
+                  ),
+                  DefaultButton(
+                    onTap: () {},
+                    buttonText: 'Buy Now',
+                    width: context.screenWidth * 0.43,
+                    buttonColor: Theme.of(context).secondaryHeaderColor,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: smallPadding,
+        ),
         ReviewsAndRattings(
           totalRattings: 4,
         ),

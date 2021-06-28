@@ -25,23 +25,23 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  // channel = const AndroidNotificationChannel(
-  //   'high_importance_channel', // id
-  //   'High Importance Notifications', // title
-  //   'This channel is used for important notifications.', // description
-  //   importance: Importance.high,
-  // );
-  // await flutterLocalNotificationsPlugin
-  //     .resolvePlatformSpecificImplementation<
-  //         AndroidFlutterLocalNotificationsPlugin>()
-  //     ?.createNotificationChannel(channel);
-  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-  //   alert: true,
-  //   badge: true,
-  //   sound: true,
-  // );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  channel = const AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+  );
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
   final sharedPreference = await SharedPreferences.getInstance();
   runApp(ProviderScope(overrides: [
     sharedPreferencesProvider.overrideWithValue(sharedPreference),
@@ -54,42 +54,42 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   FirebaseMessaging.instance.getInitialMessage().then((message) {
-  //     print(message?.notification?.body);
-  //   });
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      print(message?.notification?.body);
+    });
 
-  //   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-  //     RemoteNotification? notification = message.notification;
-  //     AndroidNotification? android = message.notification?.android;
-  //     if (notification != null && android != null) {
-  //       flutterLocalNotificationsPlugin.show(
-  //         notification.hashCode,
-  //         notification.title,
-  //         notification.body,
-  //         NotificationDetails(
-  //           android: AndroidNotificationDetails(
-  //             channel.id,
-  //             channel.name,
-  //             channel.description,
-  //             // TODO add a proper drawable resource to android, for now using
-  //             //      one that already exists in example app.
-  //             icon: 'launch_background',
-  //           ),
-  //         ),
-  //       );
-  //       String navigateTo = message.data['screen'];
-  //       print('App recieved: navigate to $navigateTo');
-  //     }
-  //   });
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channel.description,
+              // TODO add a proper drawable resource to android, for now using
+              //      one that already exists in example app.
+              icon: 'launch_background',
+            ),
+          ),
+        );
+        String navigateTo = message.data['screen'];
+        print('App recieved: navigate to $navigateTo');
+      }
+    });
 
-  //   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-  //     print(
-  //         'A new onMessageOpenedApp event was published!.Message body is ${message.notification?.body}');
-  //   });
-  // }
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print(
+          'A new onMessageOpenedApp event was published!.Message body is ${message.notification?.body}');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

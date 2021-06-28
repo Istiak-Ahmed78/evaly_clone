@@ -13,6 +13,8 @@ import 'state_management/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'views/screens/nav_items/wish_list/wish_list_tab.dart';
+
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 late AndroidNotificationChannel channel;
 
@@ -101,13 +103,15 @@ class _MyAppState extends State<MyApp> {
             // navigatorKey: ,
             debugShowCheckedModeBanner: false,
             theme: watch(appThemeStateProvider),
-            home: StreamProvider<NetWorkStatus>(
-                initialData: NetWorkStatus.offline,
-                create: (context) =>
-                    NetworkStatusServices().networkStatusController.stream,
-                child: NetwoekAwerWidget(
-                    onlineWidget: NavBarPage(),
-                    offlineWidget: NoConnectionScreen())),
+            home:
+                //  WishlistTab()
+                StreamProvider<NetWorkStatus>(
+                    initialData: NetWorkStatus.offline,
+                    create: (context) =>
+                        NetworkStatusServices().networkStatusController.stream,
+                    child: NetwoekAwerWidget(
+                        onlineWidget: NavBarPage(),
+                        offlineWidget: NoConnectionScreen())),
           );
         },
       ),

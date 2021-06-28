@@ -4,25 +4,34 @@ import 'package:flutter/material.dart';
 class DefaultButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback onTap;
-  const DefaultButton({Key? key, required this.onTap, required this.buttonText})
+  final double height, width;
+  final Color buttonColor, buttonTextColor;
+  const DefaultButton(
+      {Key? key,
+      required this.onTap,
+      required this.buttonText,
+      this.height = 50,
+      this.width = double.infinity,
+      this.buttonTextColor = Colors.white,
+      this.buttonColor = kBlack})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: double.infinity,
-        height: 50,
+        width: width,
+        height: height,
         child: ElevatedButton(
           onPressed: onTap,
           child: Text(
             buttonText,
-            style: Theme.of(context).textTheme.button,
+            style: TextStyle(color: buttonTextColor),
           ),
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)))),
-            backgroundColor: MaterialStateProperty.all<Color>(kBlack),
+            backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
           ),
         ));
   }

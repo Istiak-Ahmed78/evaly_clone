@@ -32,20 +32,7 @@ class WishlistTab extends StatelessWidget {
             ),
           ),
         ),
-        body: Consumer(builder: (context, ref, _) {
-          // ref(wishlistNotifier).isEmpty
-          return ref(wishlistNotifier).isEmpty
-              ? NoWishlistItem()
-              : Container(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => WisgListItem(
-                      wishListModel: ref(wishlistNotifier)[index],
-                    ),
-                    shrinkWrap: true,
-                    itemCount: ref(wishlistNotifier).length,
-                  ),
-                );
-        }));
+        body: NoWishlistItem());
   }
 }
 
